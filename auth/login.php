@@ -3,6 +3,10 @@
 
 <?php 
 
+if (isset($_SESSION['username'])){
+    header("location: ".APPURL."");
+}
+
 if (isset($_POST['submit'])){
     if(empty($_POST['email']) OR empty($_POST['password'])){
         echo "<script>alert('One or more fields are empty');</script>";
@@ -18,7 +22,11 @@ if (isset($_POST['submit'])){
 
         if($login->rowcount() > 0){
             if(password_verify($password, $fetch['mypassword'])){
-                echo "LOGGED IN";
+                
+                $_SESSION['username'] = $fetch['username'];
+                $_SESSION['user_id'] = $fetch['id'];
+
+                header("location: ".APPURL."");
             } else {
                 echo "<script>alert('Password or email is wrong');</script>";
             }

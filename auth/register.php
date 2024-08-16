@@ -3,6 +3,10 @@
 
 <?php 
 
+    if (isset($_SESSION['username'])){
+        header("location: ".APPURL."");
+    }
+
     if(isset($_POST["submit"])) {
         $username = $_POST["username"];
         $email = $_POST['email'];
