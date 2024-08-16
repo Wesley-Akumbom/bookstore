@@ -1,38 +1,33 @@
-<?php require "../includes/header.php"; ?>
-<?php require "../config/config.php"; ?>
+<?php require '../config/config.php'; ?>
+<?php require '../includes/header.php'; ?>
 
 <?php 
 
-if (isset($_POST['submit'])) {
-    // Retrieve form data
-    $email = isset($_POST['email']) ? $_POST['email'] : '';
-    $password = isset($_POST['password']) ? $_POST['password'] : '';
-
-    // Validate input
-    if (empty($email) || empty($password)) {
-        $error = "One or more fields are empty";
+if (isset($_POST['submit'])){
+    if(empty($_POST['email']) OR empty($_POST['password'])){
+        echo "<script>alert('One or more fields are empty');</script>";
     } else {
-        // Prepare and execute query
-        $stmt = $conn->prepare("SELECT * FROM users WHERE email = :email");
-        $stmt->bindParam(':email', $email);
-        $stmt->execute();
+        $email = $_POST["email"];
+        $password = $_POST['password'];
         
-        // Fetch the result
-        $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
+        //check if email exists
+        $login = $conn->query("SELECT * FROM users WHERE email = '$email'");
+        $login->execute();
 
-        // Check if a user was found
-        if ($fetch) {
-            // Verify the password
-            if (password_verify($password, $fetch['mypassword'])) {
+        $fetch = $login->fetch(PDO::FETCH_ASSOC);
+
+        if($login->rowcount() > 0){
+            if(password_verify($password, $fetch['mypassword'])){
                 echo "LOGGED IN";
             } else {
-                $error = "Password or email is incorrect";
+                echo "<script>alert('Password or email is wrong');</script>";
             }
         } else {
-            $error = "Password or email is incorrect";
+            echo "<script>alert('Password or email is wrong');</script>";
         }
-    }
+    } 
 }
+
 ?>
 
         <div class="row justify-content-center">
@@ -43,7 +38,7 @@ if (isset($_POST['submit'])) {
                     <div class="">
                         <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
                         <div class="">
-                            <input type="email"  class="form-control" name="email">
+                            <input type="email" name="email" class="form-control">
                         </div>
                     </div>
                     <div class="">
