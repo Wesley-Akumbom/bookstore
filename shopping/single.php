@@ -32,6 +32,11 @@
     if(isset($_GET['id'])){
         $id = $_GET['id']; 
 
+        //checking for product cart
+        $select = $conn->query("SELECT * FROM cart WHERE pro_id='$id' AND user_id='$_SESSION[user_id]'");
+        $select->execute();
+
+        //getting data for every product   
         $row = $conn->query("SELECT * FROM products WHERE status=1 AND id='$id'");
         $row->execute();
 
@@ -85,7 +90,11 @@
                                         <input type="text" name="user_id" value="<?php echo $_SESSION['user_id']; ?>" class="form-control">
                                     </div>
                                     <div class = "cart mt-4 aligin-items-cente">
-                                    <button name="submit" type="submit" class="btn btn-primary text-uppercase mr-2 px-4"><i class="fas fa-shopping-cart"></i> Add to cart</button>
+                                    <?php if($select->rowCount() > 0) :    ?>
+                                        <button id="submit" name="submit" type="submit" disabled class="btn btn-primary text-uppercase mr-2 px-4"><i class="fas fa-shopping-cart"></i> Added to cart</button>
+                                    <?php else: ?>
+                                        <button id="submit" name="submit" type="submit" class="btn btn-primary text-uppercase mr-2 px-4"><i class="fas fa-shopping-cart"></i> Add to cart</button>
+                                    <?php endif; ?>
                                     </div>
                                 </form>
                             </div>
@@ -104,7 +113,7 @@
         $(document).on("submit", function(e) {
 
             e.preventDefault();
-            
+
             var formData = $("#form-data").serialize()+'&submit=submit';
 
             $.ajax({
@@ -114,6 +123,8 @@
 
                 success:function() {
                     alert("Added to cart succesfully ");
+
+                    $("#submit").html("<i class='fas fa-shopping-cart'></i> Added to cart").prop("disabled", true);
                 }
             })
         })
