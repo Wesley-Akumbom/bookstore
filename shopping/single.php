@@ -35,10 +35,7 @@
         //checking for product cart
         if(isset($_SESSION['user_id'])){
             $select = $conn->query("SELECT * FROM cart WHERE pro_id='$id' AND user_id='$_SESSION[user_id]'");
-            $select->execute([
-                ':id' => $id,
-                ':user_id' => $_SESSION['user_id']
-            ]);
+            $select->execute();
 
         }
         //getting data for every product   
