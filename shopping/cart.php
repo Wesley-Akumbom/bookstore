@@ -96,8 +96,8 @@
 
         
 
-                  var pro_quantity = $el.find(".pro_quantity").val();
-                  var pro_price = $el.find(".pro_price").html();
+                  var pro_quantity = parseInt($el.find(".pro_quantity").val(), 10);
+                  var pro_price = parseFloat($el.find(".pro_price").text());
 
                   var total = pro_quantity * pro_price;
                   $el.find(".total_price").html("");        
@@ -137,9 +137,9 @@
                   var sum = 0.0;
                   $('.total_price').each(function()
                   {
-                      sum += parseFloat($(this).text());
+                    sum += parseFloat($(this).text().replace('$', ''));
                   });
-                  $(".full_price").html(sum+"$");
+                  $(".full_price").html("$"+sum);
         }, 4000);
       } 
       
