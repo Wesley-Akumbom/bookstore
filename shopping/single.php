@@ -22,7 +22,7 @@
             ':pro_name' => $pro_name,
             ':pro_image' => $pro_image,
             ':pro_price' => $pro_price,
-            ':pro_quantity' => $pro_quantity,
+            ':pro_quantity' => $pro_quantity, 
             ':pro_file' => $pro_file,
             ':user_id'=> $user_id
         ]);
