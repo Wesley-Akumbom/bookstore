@@ -133,8 +133,17 @@
                     alert("Added to cart succesfully ");
 
                     $("#submit").html("<i class='fas fa-shopping-cart'></i> Added to cart").prop("disabled", true);
+
+                    ref(); 
                 }
-            })
+            });
+
+            function ref() {
+
+                $("body").load("single.php?id=<?php echo $id; ?>");
+
+                }
+
         })
 });
 </script>
