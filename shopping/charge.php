@@ -10,17 +10,22 @@
         die(header('location: '.APPURL.''));
     }
 
-if(isset($_POST['email'])){
+    if (!isset($_SESSION['username'])){
+        header("location: ".APPURL."");
+      }
+      
+
+    if(isset($_POST['email'])){
     
-    \Stripe\Stripe::setApiKey("$secret_key");
+        \Stripe\Stripe::setApiKey("$secret_key");
 
-    $charge = \Stripe\Charge::create([
-        'source' => $_POST['stripeToken'],  
-        'amount' => $_SESSION['price'],
-        'currency' => 'usd',
-    ]);
+        $charge = \Stripe\Charge::create([
+            'source' => $_POST['stripeToken'],  
+            'amount' => $_SESSION['price'],
+            'currency' => 'usd',
+        ]);
 
-    echo "Paid";
+        echo "Paid";
 
     if(empty($_POST['email']) OR empty($_POST['username']) OR empty($_POST['fname']) OR empty($_POST['lname'])){
         echo "<script>alert('One or more fields are empty');</script>";

@@ -3,6 +3,10 @@
 
 <?php 
 
+  if (!isset($_SESSION['username'])){
+    header("location: ".APPURL."");
+  }
+
   $products = $conn->query("SELECT * FROM cart WHERE user_id = '$_SESSION[user_id]'");
   $products->execute();
 
