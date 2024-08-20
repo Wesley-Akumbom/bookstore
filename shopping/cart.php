@@ -8,6 +8,14 @@
 
   $allProducts = $products->fetchAll(PDO::FETCH_OBJ);
 
+  if (isset($_POST['submit'])){
+    $price = $_POST['price'];
+
+    $_SESSION['price'] = $price;
+
+    header("location: checkout.php");
+  }
+
 ?>
 
     <div class="row d-flex justify-content-center align-items-center h-100 mt-5 mt-5">
@@ -16,7 +24,7 @@
           <div class="card-body p-0">
             <div class="row g-0">
               <div class="col-lg-8">
-                <div class="p-5">
+                <div class="p-5"> 
                   <div class="d-flex justify-content-between align-items-center mb-5">
                     <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
                   </div>
@@ -69,20 +77,23 @@
                 </div>
               </div>
               <div class="col-lg-4 bg-grey">
-                <div class="p-5">
+                <class="p-5">
                   <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
                   <hr class="my-4">
 
                   
-
+                <form method="post" action="cart.php">
                   <div class="d-flex justify-content-between mb-5">
                     <h5 class="text-uppercase">Total price</h5>
                     <h5 class="full_price"></h5>
+
+                    <input class="inp_price" name="price" type="text">
                   </div>
 
-                  <button type="button" class="btn btn-dark btn-block btn-lg"
+                  <button type="submit" name="submit" class="btn btn-dark btn-block btn-lg"
                     data-mdb-ripple-color="dark">Checkout</button>
-
+                
+                </form>    
                 </div>
               </div>
             </div>
@@ -189,6 +200,7 @@
                     sum += parseFloat($(this).text().replace('$', ''));
                   });
                   $(".full_price").html("$"+sum);
+                  $(".inp_price").val(sum);
         }, 4000);
       } 
       
