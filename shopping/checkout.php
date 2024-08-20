@@ -4,7 +4,6 @@
 
       <!-- Heading -->
       <h2 class="my-5 h2 text-center">Checkout</h2>
-      <?php echo $_SESSION['price']; ?>
 
       <!--Grid row-->
       <div class="row d-flex justify-content-center align-items-center h-100 mt-5 mt-5">

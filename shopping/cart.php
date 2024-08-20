@@ -87,7 +87,7 @@
                     <h5 class="text-uppercase">Total price</h5>
                     <h5 class="full_price"></h5>
 
-                    <input class="inp_price" name="price" type="text">
+                    <input class="inp_price" name="price" type="hidden">
                   </div>
 
                   <button type="submit" name="submit" class="btn btn-dark btn-block btn-lg"
