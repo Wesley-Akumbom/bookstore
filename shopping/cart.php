@@ -51,7 +51,7 @@
                         
                         <td><button value="<?php echo $product->id; ?>" class="btn-update btn btn-warning text-white"><i class="fas fa-pen"></i> </button></td>
 
-                        <td><button class="btn btn-danger text-white"><i class="fas fa-trash-alt"></i> </button></td>
+                        <td><button value="<?php echo $product->id; ?>" class="btn-delete btn btn-danger text-white"><i class="fas fa-trash-alt"></i> </button></td>
                       </tr>
                       <?php endforeach; ?>
 
@@ -129,6 +129,26 @@
                 
            fetch();     
       });
+
+          $(".btn-delete").on('click', function(e) {
+
+            var id = $(this).val();
+
+
+              $.ajax({
+                type: "POST",
+                url: "delete-item.php",
+                data: {
+                  delete: "delete",
+                  id: id
+                },
+
+                success: function() {
+                alert("Product successfully deleted");
+                  reload();
+                }
+              })
+            });
 
        fetch();
 
