@@ -32,7 +32,7 @@
                         <th scope="col">Quantity</th>
                         <th scope="col">Total Price</th>
                         <th scope="col">Update</th>
-                        <th scope="col"><a href="#" class="btn btn-danger text-white">Clear</a></th>
+                        <th scope="col"><button class="delete-all btn btn-danger text-white">Clear</></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -105,6 +105,8 @@
 
                   $el.find(".total_price").append('$'+total);
 
+
+                  //update product by id
                   $(".btn-update").on('click', function(e) {
 
                       var id = $(this).val();
@@ -130,6 +132,7 @@
            fetch();     
       });
 
+      //delete product by id
           $(".btn-delete").on('click', function(e) {
 
             var id = $(this).val();
@@ -149,6 +152,23 @@
                 }
               })
             });
+
+            //delete all products
+            $(".delete-all").on('click', function(e) {
+
+                $.ajax({
+                  type: "POST",
+                  url: "delete-all-items.php",
+                  data: {
+                    delete: "delete"
+                  },
+
+                  success: function() {
+                  alert("All products successfully deleted");
+                    reload();
+                  }
+                })
+              });
 
        fetch();
 
