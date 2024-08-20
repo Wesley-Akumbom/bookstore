@@ -38,7 +38,7 @@
                     <tbody>
                       <?php foreach($allProducts as $product) : ?>
                       <tr class="mb-4">
-                        <th scope="row"><?php echo $product->pro_id ?></th>
+                        <th scope="row"><?php echo $product->id?></th>
                         <td><img width="100" height="100"
                         src="../images/<?php echo $product->pro_image ?>"
                         class="img-fluid rounded-3" alt="Cotton T-shirt">
@@ -48,7 +48,8 @@
                         <td><input id="form1" min="1" name="quantity" value="<?php echo $product->pro_quantity ?>" type="number"
                         class="form-control form-control-sm pro_quantity" /></td>
                         <td class="total_price"><?php echo $product->pro_price * $product->pro_quantity ?></td> 
-                        <td><button class="btn btn-warning text-white"><i class="fas fa-pen"></i> </button></td>
+                        
+                        <td><button value="<?php echo $product->id; ?>" class="btn-update btn btn-warning text-white"><i class="fas fa-pen"></i> </button></td>
 
                         <td><button class="btn btn-danger text-white"><i class="fas fa-trash-alt"></i> </button></td>
                       </tr>
@@ -104,26 +105,26 @@
 
                   $el.find(".total_price").append('$'+total);
 
-                  // $(".btn-update").on('click', function(e) {
+                  $(".btn-update").on('click', function(e) {
 
-                  //     var id = $(this).val();
+                      var id = $(this).val();
                     
 
-                  //     $.ajax({
-                  //       type: "POST",
-                  //       url: "update-item.php",
-                  //       data: {
-                  //         update: "update",
-                  //         id: id,
-                  //         product_quantity: pro_quantity
-                  //       },
+                      $.ajax({
+                        type: "POST",
+                        url: "update-item.php",
+                        data: {
+                          update: "update",
+                          id: id,
+                          pro_quantity: pro_quantity
+                        },
 
-                  //       success: function() {
-                  //        // alert("done");
-                  //         reload();
-                  //       }
-                  //     })
-                  //   });
+                        success: function() {
+                         // alert("done");
+                          //reload();
+                        }
+                      })
+                    });
                  
                 
            fetch();     
@@ -143,11 +144,10 @@
         }, 4000);
       } 
       
-      // function reload() {
+      function reload() {
 
+            $("body").load("cart.php")
        
-      //       $("body").load("cart.php")
-       
-      // }
+      }
 });
 </script>
