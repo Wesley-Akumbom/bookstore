@@ -206,11 +206,11 @@
                   $(".full_price").html("$"+sum);
                   $(".inp_price").val(sum);
 
-                  if($(".inp_price").val(sum) < 0){
-                    $(".checkout").hide();
-                  } else {
+                  if(parseFloat($(".inp_price").val().replace('$', '')) > 0){
                     $(".checkout").show();
-                  }
+                } else {
+                    $(".checkout").hide();
+                }
         }, 1000);
       } 
       
