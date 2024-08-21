@@ -206,12 +206,12 @@
                   $(".full_price").html("$"+sum);
                   $(".inp_price").val(sum);
 
-                  if($(".inp_price").val(sum) > 0){
-                    $(".checkout").show();
-                  } else {
+                  if($(".inp_price").val(sum) < 0){
                     $(".checkout").hide();
+                  } else {
+                    $(".checkout").show();
                   }
-        }, 4000);
+        }, 1000);
       } 
       
       function reload() {
