@@ -30,7 +30,7 @@
                     <?php foreach($categories as $category) : ?>
                     <th scope="row"><?php echo $category->id ?></th>
                     <td><?php echo $category->name ?></td>
-                    <td><a  href="<?php echo ADMINURL; ?>/categories-admins/update-categories.php?id=<?php echo $category->id ?>" class="btn btn-warning text-white text-center ">Update </a></td>
+                    <td><a  href="<?php echo ADMINURL; ?>/categories-admins/update-category.php?id=<?php echo $category->id ?>" class="btn btn-warning text-white text-center ">Update </a></td>
                     <td><a href="<?php echo ADMINURL; ?>/categories-admins/delete-category.php?id=<?php echo $category->id ?>" class="btn btn-danger  text-center ">Delete </a></td>
                   </tr>
                   <?php endforeach; ?>

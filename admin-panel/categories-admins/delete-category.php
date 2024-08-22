@@ -6,6 +6,13 @@
     if(isset($_GET['id'])){
         $id = $_GET['id'];
 
+        $select = $conn->query("SELECT * FROM categories WHERE id='$id'");
+        $select->execute();
+
+        $images = $select->fetch(PDO::FETCH_OBJ);
+
+        unlink("images/".$images->image."");
+
         $delete = $conn->query("DELETE FROM categories WHERE id='$id'");
         $delete->execute();
 
