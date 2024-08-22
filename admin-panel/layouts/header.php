@@ -33,7 +33,7 @@
       <?php if(isset($_SESSION['adminname'])) : ?>
         <ul class="navbar-nav side-nav" >
           <li class="nav-item">
-            <a class="nav-link text-white" style="margin-left: 20px;" href="index.html">Home
+            <a class="nav-link text-white" style="margin-left: 20px;" href="<?php echo ADMINURL;?>">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>
