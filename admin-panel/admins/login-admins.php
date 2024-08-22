@@ -3,9 +3,9 @@
 
 <?php 
 
-// if (isset($_SESSION['username'])){
-//     header("location: ".APPURL."");
-// }
+  if (isset($_SESSION['adminname'])){
+      header("location: ".ADMINURL."");
+  }
 
 if (isset($_POST['submit'])){
     if(empty($_POST['email']) OR empty($_POST['password'])){
@@ -23,10 +23,10 @@ if (isset($_POST['submit'])){
         if($login->rowcount() > 0){
             if(password_verify($password, $fetch['mypassword'])){
                 
-                // $_SESSION['username'] = $fetch['username'];
-                // $_SESSION['user_id'] = $fetch['id'];
+                $_SESSION['adminname'] = $fetch['adminname'];
+                $_SESSION['admin_id'] = $fetch['id'];
 
-                // header("location: ".APPURL."");
+                header("location: ".ADMINURL."");
 
                 echo "LOGGED IN";
             } else {
@@ -70,5 +70,6 @@ if (isset($_POST['submit'])){
 
             </div>
        </div>
+
 
 <?php require "../layouts/footer.php" ?>
