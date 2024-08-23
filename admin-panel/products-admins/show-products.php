@@ -40,7 +40,7 @@
                     <td><?php echo $product->price ?></td>
                     <td><?php echo $product->category_name ?></td>
                      <td><a href="#" class="btn btn-success  text-center ">Verified</a></td>
-                     <td><a href="#" class="btn btn-danger  text-center ">Delete</a></td>
+                     <td><a href="<?php echo ADMINURL ?>/products-admins/delete-products.php?id=<?php echo $product->id ?>" class="btn btn-danger  text-center ">Delete</a></td>
                   </tr>
                   <?php endforeach; ?>
                 </tbody>
