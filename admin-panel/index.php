@@ -3,6 +3,10 @@
 
 <?php 
 
+  if (!isset($_SESSION['adminname'])){
+    header("location: ".ADMINURL."/admins/login-admins.php");
+  }
+
   $products = $conn->query("SELECT COUNT(*) as products_num FROM products ");
   $products->execute();
   $allProducts = $products->fetch(PDO::FETCH_OBJ);

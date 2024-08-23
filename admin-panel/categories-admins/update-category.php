@@ -3,45 +3,49 @@
 
 <?php 
 
-if(isset($_GET['id'])){
-    $id = $_GET['id'];
+  if (!isset($_SESSION['adminname'])){
+    header("location: ".ADMINURL."/admins/login-admins.php");
+  }
 
-    $select = $conn->prepare("SELECT * FROM categories WHERE id = :id");
-    $select->execute([':id' => $id]);
+  if(isset($_GET['id'])){
+      $id = $_GET['id'];
 
-    $categories = $select->fetch(PDO::FETCH_OBJ);
+      $select = $conn->prepare("SELECT * FROM categories WHERE id = :id");
+      $select->execute([':id' => $id]);
 
-    
-    if(isset($_POST["submit"])) {
-      if(empty($_POST['name']) OR empty($_POST['description'])){
-        echo "<script>alert('One or more fields are empty');</script>";
-    } else{
-      unlink("images/".$categories->image."");
+      $categories = $select->fetch(PDO::FETCH_OBJ);
+
       
-      $name = $_POST["name"];
-      $description = $_POST["description"];
-      $image = $_FILES["image"]['name'];
-  
-      $dir = "images/" . basename($image);
-  
-      $update = $conn->prepare("UPDATE categories SET name = :name, description = :description, image = :image WHERE id = :id");
-      $update->execute([
-        ":name"         => $name,
-        ":description"  => $description,
-        ":image"        => $image,
-        ":id"           => $id
-      ]);
-  
-      if(move_uploaded_file($_FILES["image"]['tmp_name'], $dir)){
+      if(isset($_POST["submit"])) {
+        if(empty($_POST['name']) OR empty($_POST['description'])){
+          echo "<script>alert('One or more fields are empty');</script>";
+      } else{
+        unlink("images/".$categories->image."");
+        
+        $name = $_POST["name"];
+        $description = $_POST["description"];
+        $image = $_FILES["image"]['name'];
+    
+        $dir = "images/" . basename($image);
+    
+        $update = $conn->prepare("UPDATE categories SET name = :name, description = :description, image = :image WHERE id = :id");
+        $update->execute([
+          ":name"         => $name,
+          ":description"  => $description,
+          ":image"        => $image,
+          ":id"           => $id
+        ]);
+    
+        if(move_uploaded_file($_FILES["image"]['tmp_name'], $dir)){
+          header("location: ".ADMINURL."/categories-admins/show-categories.php");
+        }
         header("location: ".ADMINURL."/categories-admins/show-categories.php");
       }
-      header("location: ".ADMINURL."/categories-admins/show-categories.php");
-    }
-    }
-} else {
-    // Handle the case where no ID is provided
-    echo "No category ID provided.";
-}
+      }
+  } else {
+      // Handle the case where no ID is provided
+      echo "No category ID provided.";
+  }
 
 ?>
 

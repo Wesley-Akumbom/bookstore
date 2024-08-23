@@ -3,6 +3,10 @@
 
 <?php 
 
+  if (!isset($_SESSION['adminname'])){
+    header("location: ".ADMINURL."/admins/login-admins.php");
+  }
+
   $select = $conn->query("SELECT products.*, categories.name AS category_name 
                           FROM products 
                           LEFT JOIN categories ON products.category_id = categories.id");
