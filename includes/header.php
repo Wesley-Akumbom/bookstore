@@ -65,8 +65,8 @@
                     <?php echo $_SESSION['username']; ?>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="<?php echo APPURL; ?>/users/orders.php?id=<?php echo $_SESSION['user_id']; ?>">Orders</a></li>
+                    <!-- <li><a class="dropdown-item" href="#">Another action</a></li> -->
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="<?php echo APPURL; ?>/auth/logout.php">Logout</a></li>
                 </ul>
