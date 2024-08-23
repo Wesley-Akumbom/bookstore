@@ -4,26 +4,15 @@
 
 <?php 
 
-    // if (!isset($_SERVER["HTTP_REFERR"])){
-    //     header("location: index.php");
-    //     exit;
-    // }
+    if (!isset($_SERVER["HTTP_REFERER"])){
+        header("location: index.php");
+        exit;
+    }
 
-    // $select = $conn->query("SELECT * FROM cart WHERE user_id='$_SESSION[user_id]'");
-    // $select->execute();
-    // $allProducts = $select->fetchAll(PDO::FETCH_OBJ);
+    $select = $conn->query("SELECT * FROM cart WHERE user_id='$_SESSION[user_id]'");
+    $select->execute();
+    $allProducts = $select->fetchAll(PDO::FETCH_OBJ);
 
-  
-
-    // header('Content-Type: application/zip');
-    // header('Content-disposition: attachment; filename='.$zipname);
-    // header('Content-Length: ' . filesize($zipname));
-    // readfile($zipname);
-
-    // $select = $conn->query("DELETE FROM cart WHERE user_id='$_SESSION[user_id]'");
-    // $select->execute();
-
-    // header("location: index.php");
 
 
     //Import PHPMailer classes into the global namespace
@@ -46,7 +35,7 @@
         $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
         $mail->Username   = 'akumbomwesley802@gmail.com';                     //SMTP username
-        $mail->Password   = 'hrye gwaf qtlr cazk';                               //SMTP password
+        $mail->Password   = 'hryegwafqtlrcazk';                               //SMTP password
         // $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
         $mail->Port       =  587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
@@ -54,16 +43,28 @@
         $mail->setFrom('akumbomwesley802@gmail.com', 'Bookstore');
 
         //Add a recipient
-        $mail->addAddress('keyzwesley@gmail.com', 'User');     
+        $mail->addAddress($_SESSION['email'], 'User');     
 
-        // //Attachments
-        // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-        // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+        foreach($allProducts as $products) {
+            $path  = 'admin-panel/products-admins/books';
+            //$file = $products->pro_file;
+
+            for($i=0; $i < count($allProducts); $i++) {
+              
+                $mail->addAttachment($path . "/" . $products->pro_file);         //Add attachments
+
+            }
+        }
+
+        $select = $conn->query("DELETE FROM cart WHERE user_id='$_SESSION[user_id]'");
+        $select->execute();
+
+        header("location: index.php");
 
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = 'The books you bought';
-        $mail->Body    = 'Here are your books <b>Thanks for buying from Bookstore</b>';
+        $mail->Subject = 'Thank you for Purchasing!';
+        $mail->Body    = 'Here are the books you have paid for.<br><b>Come back for more!</b>';
         // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
         $mail->send();

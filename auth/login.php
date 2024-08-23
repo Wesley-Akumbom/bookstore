@@ -25,6 +25,7 @@ if (isset($_POST['submit'])){
                 
                 $_SESSION['username'] = $fetch['username'];
                 $_SESSION['user_id'] = $fetch['id'];
+                $_SESSION['email'] = $fetch['email'];
 
                 header("location: ".APPURL."");
             } else {
