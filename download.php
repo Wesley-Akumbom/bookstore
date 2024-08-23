@@ -56,11 +56,6 @@
             }
         }
 
-        $select = $conn->query("DELETE FROM cart WHERE user_id='$_SESSION[user_id]'");
-        $select->execute();
-
-        header("location: index.php");
-
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = 'Thank you for Purchasing!';
@@ -68,7 +63,14 @@
         // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
         $mail->send();
-        echo 'Message has been sent';
+        
+        //delete cart items after sending products
+        $select = $conn->query("DELETE FROM cart WHERE user_id='$_SESSION[user_id]'");
+        $select->execute();
+
+        header("location: success.php");
+
+        
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }

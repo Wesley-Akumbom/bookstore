@@ -8,7 +8,7 @@
            <div class="row">
            <!--Grid column-->
            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-               <h5 class="text-uppercase">Footer Content</h5>
+               <h5 class="text-uppercase">Bookstore</h5>
 
                <p>
                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
@@ -20,20 +20,20 @@
 
            <!--Grid column-->
            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-               <h5 class="text-uppercase">Links</h5>
+               <h5 class="text-uppercase" style="text-decoration: none;">Links</h5>
 
-               <ul class="list-unstyled mb-0">
+               <ul class="list-unstyled mb-0" style="text-decoration: none;">
                <li>
-                   <a href="#!" class="text-white">Link 1</a>
+                   <a href="#!" class="text-white" style="text-decoration: none;">Careers</a>
                </li>
                <li>
-                   <a href="#!" class="text-white">Link 2</a>
+                   <a href="#!" class="text-white" style="text-decoration: none;">Support</a>
                </li>
                <li>
-                   <a href="#!" class="text-white">Link 3</a>
+                   <a href="#!" class="text-white" style="text-decoration: none;">Blog</a>
                </li>
                <li>
-                   <a href="#!" class="text-white">Link 4</a>
+                   <a href="#!" class="text-white" style="text-decoration: none;">Investors</a>
                </li>
                </ul>
            </div>
@@ -41,20 +41,20 @@
 
            <!--Grid column-->
            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-               <h5 class="text-uppercase mb-0">Links</h5>
+               <h5 class="text-uppercase mb-0" style="text-decoration: none;">Links</h5>
 
                <ul class="list-unstyled">
                <li>
-                   <a href="#!" class="text-white">Link 1</a>
+                   <a href="#!" class="text-white" style="text-decoration: none;">Terms</a>
                </li>
                <li>
-                   <a href="#!" class="text-white">Link 2</a>
+                   <a href="#!" class="text-white" style="text-decoration: none;">Privacy Policy</a>
                </li>
                <li>
-                   <a href="#!" class="text-white">Link 3</a>
+                   <a href="#!" class="text-white" style="text-decoration: none;">Blog</a>
                </li>
                <li>
-                   <a href="#!" class="text-white">Link 4</a>
+                   <a href="#!" class="text-white" style="text-decoration: none;">Sitemap</a>
                </li>
                </ul>
            </div>
@@ -66,7 +66,7 @@
 
        <!-- Copyright -->
        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-           © 2020 Copyright:
+           © 2024 Copyright:
            <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
        </div>
        <!-- Copyright -->
