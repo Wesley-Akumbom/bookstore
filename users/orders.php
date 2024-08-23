@@ -22,12 +22,12 @@
 
 ?>
 
-    <div class="row mt-5">
+    <div class="row mt-5" style="margin-bottom:220px">
         <div class="col">
+            <?php if(count($orders) > 0) : ?>
           <div class="card">
             <div class="card-body">
               <h5 class="card-title mb-4 d-inline">Orders</h5>
-             <!-- <a  href="<?php //echo APPURL; ?>/admins/create-admins.php" class="btn btn-primary mb-4 text-center float-right">Create Admins</a> -->
               <table class="table">
                 <thead>
                   <tr>
@@ -54,6 +54,11 @@
               </table> 
             </div>
           </div>
+        <?php else : ?>
+            <div class="alert alert-success text-white bg-success">
+                There are no orders for now.
+            </div>
+            <?php endif; ?>
         </div>
       </div>
 
