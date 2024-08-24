@@ -112,15 +112,16 @@
                                                 <button id="submit" name="submit" type="submit" class="btn btn-primary text-uppercase mr-2 px-4"><i class="fas fa-shopping-cart"></i> Add to cart</button>
                                             <?php endif; ?>
                                         <?php endif; ?>
-                                    </div>
-
-                                    <?php if(isset($_SESSION['user_id'])) : ?>
+                                    
+                                    
+                                        <?php if(isset($_SESSION['user_id'])) : ?>
                                         <?php if($select_wishlist->rowCount() > 0) : ?>
                                             <button value="<?php echo $fetch->id ?>" class="btn-delete-wishlist btn btn-primary text-uppercase mr-2 px-4"><i class="fas fa-heart"></i> Added to wishlist</button>
                                         <?php else : ?>        
                                             <buttonn class="wishlist-btn btn btn-primary text-uppercase mr-2 px-4"><i class="fas fa-heart"></i> Add to wishlist</button>
                                         <?php endif; ?>
                                     <?php endif; ?>
+                                    </div>
                                 </form>
                             </div>
                         </div>
