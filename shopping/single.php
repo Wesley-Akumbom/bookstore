@@ -182,19 +182,22 @@
                     ref(); 
                 }
             });
-
-            function ref() {
-
-                $("body").load("single.php?id=<?php echo $id; ?>");
-
-                }
  
             });
 
 
             });
 
+            
+            function ref() {
+
+                        $("body").load("single.php?id=<?php echo $id; ?>");
+
+                        }
+
                 $(".btn-delete-wishlist").on('click', function(e) {
+
+                    e.preventDefault();
 
                     var id = $(this).val();
 
@@ -209,7 +212,8 @@
 
                         success: function() {
                         alert("Product successfully deleted from wishlist");
-                        reload();
+                        $(".btn-delete-wishlist").html("<i class='fas fa-heart'></i> Add to wishlist").addClass("wishlist-btn").removeClass("btn-delete-wishlist")
+                        ref();
                         }
                     })
                 });
