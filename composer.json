@@ -1,16 +1,5 @@
 {
     "require": {
-        "stripe/stripe-php": "^15.7",
-        "php": "^8.2"
-    },
-    "require-dev": {
-        "heroku/heroku-buildpack-php": "*"
-    },
-    "scripts": {
-        "start": "php -S 0.0.0.0:$PORT -t public"
-    },
-    "config": {
-        "process-timeout": 0,
-        "sort-packages": true
+        "stripe/stripe-php": "^15.7"
     }
 }
